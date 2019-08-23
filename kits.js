@@ -58,7 +58,7 @@ kits.getId = function(){
 
 
 // 获取随机颜色 randomRGBColor
-kits.randomRGBColor=function randomColor() {
+kits.randomColor=function () {
   var r = random(0, 255);
   var g = random(0, 255);
   var b = random(0, 255);
@@ -66,10 +66,10 @@ kits.randomRGBColor=function randomColor() {
 }
 
 // 每隔一段时间 , 调用第一个参数作为函数一次
-setInterval(function () {
-  // 修改body的背景颜色为随机颜色
-  document.body.style.backgroundColor = randomColor();
-}, 5000);
+// setInterval(function () {
+//   // 修改body的背景颜色为随机颜色
+//   document.body.style.backgroundColor = randomColor();
+// }, 5000);
 
 
 
