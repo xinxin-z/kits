@@ -95,3 +95,55 @@ kits.randomColor=function () {
 }
 //测试函数
 //  console.log(getColor());
+
+
+//5. getLocalDataArray(key)  从localStorage里面根据指定的键(key)获取一个数组
+// 从本地存储中读取复杂数据
+kits.getArray=kits.getLocalDataArray=function (key) {
+  let json=localStorage.getItem(key);
+  let arr=JSON.parse(json);
+  return arr||[];
+  
+}
+
+//6. saveLocalDataArray(key,arr)   将一个数组(arr)以指定的键(key)存储到localStorage里面
+// 要存储的复杂数据 默认是存储json格式字符串
+kits.setData=kits.saveLocalDataArray=function (key,arr) {
+  let json=JSON.stringify(arr);
+  localStorage.setItem(key,json);
+}
+
+//7. appendDataIntoArray(key,data)  向localStorage里面指定键(key)的数组数据追加一个数据对象（data）
+kits.appendDataIntoArray=function (key,data) {
+  arr=this.getLocalDataArray(key,arr);
+  arr=arr||[];
+  arr.unshift(data);
+  this.saveLocalDataArray(key.arr);
+}
+
+
+//8. deleteLocalDataById(key,id)   根据对应的id从localStorage中指定键(key)的数组中删除一条数据
+kits.deleteLocalDataById=function (key,id) {
+  arr=this.getLocalDataArray(key,arr);
+  arr=arr||[];
+  arr.forEach((e,i)=>{
+    if(e.id==id.id){
+      arr.splice(0,1);
+    }
+  })
+  this.saveLocalDataArray(key,arr);
+}
+
+
+//9. modifyLocalDataById(key,id,data)  根据id修改localStorage里面的指定键(key)的数组数据
+kits.modifyLocalDataById=function (key,id,data) {
+  arr=this.getLocalDataArray(key,arr);
+  arr=arr||[];
+  arr.forEach((e,i)=>{
+    if(e.id==id.id){
+      e.id=data.id;
+      e.content=data.content;
+    }
+  })
+this.saveLocalDataArray(key,arr);
+}
